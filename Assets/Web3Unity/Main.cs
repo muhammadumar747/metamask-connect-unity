@@ -4,9 +4,10 @@ using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
-
+using TMPro;
 public class Main : MonoBehaviour
 {
+    public Button connectButton;
     public GameObject container;
     public GameObject rowPrefab;
     public GameObject cardPrefab;
@@ -44,6 +45,8 @@ public class Main : MonoBehaviour
         accountAddress = account;
         // reset login message
         SetConnectAccount("");
+        connectButton.interactable = false;
+        connectButton.GetComponentInChildren<TextMeshProUGUI>().text = account;
         GetInventory();
         // load next scene
 
