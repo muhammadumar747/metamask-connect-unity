@@ -71,6 +71,8 @@ public class Main : MonoBehaviour
 
     async void GetInventory()
     {
+        refreshButton.interactable = false;
+        disconnectButton.interactable = false;
         // set chain: ethereum, moonbeam, polygon etc
         string chain = "polygon";
         // set network mainnet, testnet
@@ -109,6 +111,7 @@ public class Main : MonoBehaviour
             }
 
             GameObject row = Instantiate(rowPrefab, container.transform);
+
             for (int j = 0; j < cardsToInstantiate; j++)
             {
                 GameObject card = Instantiate(cardPrefab, row.transform);
@@ -163,10 +166,11 @@ public class Main : MonoBehaviour
             }
         }
 
+        disconnectButton.interactable = true;
         refreshButton.interactable = true;
     }
 
-    public void ClearInventory()
+    private void ClearInventory()
     {
         foreach (Transform child in container.transform)
         {
@@ -194,6 +198,7 @@ public class Main : MonoBehaviour
         if (accountAddress == "")
         {
             ClearInventory();
+
             connectButton.interactable = true;
             connectButton.gameObject.SetActive(true);
             disconnectButton.gameObject.SetActive(false);
